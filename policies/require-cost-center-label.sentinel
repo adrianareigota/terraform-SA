@@ -1,0 +1,7 @@
+import "tfplan/v2" as plan
+
+# Require a 'cost_center' label on instances
+deny if any plan.resource_changes as rc {
+  rc.type is "google_compute_instance" and
+  (not rc.change.after.labels or not ("cost_center" in keys(rc.change.after.labels)))
+}

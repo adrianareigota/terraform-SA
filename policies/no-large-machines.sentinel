@@ -1,0 +1,9 @@
+import "tfplan/v2" as plan
+
+# Deny disallowed machine types (demo)
+disallowed = ["n2-standard-8", "n2-standard-16", "c2-standard-8", "m2-ultramem-208"]
+
+deny if any plan.resource_changes as rc {
+  rc.type is "google_compute_instance" and
+  rc.change.after.machine_type in disallowed
+}
