@@ -1,0 +1,10 @@
+import "tfplan"
+
+disallowed = ["n2-standard-8", "n2-standard-16"]
+
+main = rule {
+  all tfplan.resource_changes as rc {
+    rc.type is not "google_compute_instance" or
+    rc.change.after.machine_type not in disallowed
+  }
+}
