@@ -1,4 +1,4 @@
-project      = "YOUR_GCP_PROJECT_ID"
+project      = "ageless-period-309812"
 region       = "us-central1"
 zone         = "us-central1-a"
 name         = "acme-dev-vm"
